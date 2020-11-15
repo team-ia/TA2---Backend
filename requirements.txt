@@ -10,7 +10,6 @@ chardet==3.0.4
 click==7.1.2
 colorama==0.4.3
 cons==0.4.2
-decouple==0.0.7
 etuples==0.3.2
 extruct==0.10.0
 flake8==3.8.3
