@@ -27,7 +27,6 @@ isort==4.3.21
 itsdangerous==1.1.0
 Jinja2==2.11.2
 jstyleson==0.0.2
-kanren==0.2.3
 language-tags==1.0.0
 lazy-object-proxy==1.4.3
 logical-unification==0.4.3
