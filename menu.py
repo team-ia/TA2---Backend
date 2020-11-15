@@ -1,5 +1,10 @@
-from kanren import run, Relation, facts, var, lall, lany, eq
+
 from kanren.constraints import neq
+from kanren import run
+from kanren import lall
+from kanren import facts
+from kanren import Relation
+from kanren import var
 import json
 import csv
 import time
@@ -19,8 +24,8 @@ buenoPara = Relation()
 maloPara = Relation()
 platilloTipo = Relation()
 
-if __name__ == "__main__":
-    main()
+
+
 
 def read_recipes_dataset():
     with open('recipes.json') as recipesJson:
@@ -87,7 +92,7 @@ def read_bad_ingredients():
    # print(enfermedades_ingredientes_list_buenos[0])
     #print(ingredient_list)
 
-#print(ingredient_list)
+
 def clear_data():
     for recipe_detail in recipe_list:
         cleared_recipe_list_detail={"title":None,"ingredients":[],"instructions":None}
@@ -102,6 +107,7 @@ def clear_data():
                  cleared_recipe_list_detail['ingredients'].append(ingredient2)
               #  print(cleared_recipe_list_detail)
                  cleared_recipe_list.append(cleared_recipe_list_detail)
+    print(len(ingredient_list))
                 #time.sleep(2.4)
 #print(cleared_recipe_list[0])
 #print(cleared_recipe_list[1])
@@ -178,14 +184,25 @@ def fact_definition():
 #print(set(run(100, x, RecomendadoPara(x,"Faringitis"))))
 #print(set(run(100, x, RecomendadoPara(x, "Faringitis", "Entrada"))) -
  #       set(run(100, x, NoRecomendadoPara(x, "Faringitis", "Entrada"))))
-def operation(str):
-     result=(set(run(100, x, RecomendadoPara(x,str)))-set(run(100, x, NoRecomendadoPara(x,str))))
-   #  print(result)
-     return result
+def operation(str_list,al_list):
+    good_recipes=set()
+    bad_recipes=set()
+    alergic=set()
+    for recipe in str_list:
+       good_recipes.update(set(run(100, x, RecomendadoPara(x,recipe))))
+       bad_recipes.update(set(run(100, x, NoRecomendadoPara(x,recipe))))
+    
+    for ingredient in al_list:
+       alergic.update(set(run(100,x,lall(ingredienteDe(ingredient,x)))))
+        
+    result=good_recipes-bad_recipes-alergic    
+      #result=(set(run(100, x, RecomendadoPara(x,str)))-set(run(100, x, NoRecomendadoPara(x,str))))
+   # print(result)
+    return result
  
-def main():
+def mainP():
       process_data()
       fact_definition()
       print("acabe")
      # test()
-
+mainP()

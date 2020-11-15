@@ -5,7 +5,13 @@ from menu import *
 app = Flask(__name__)
 api = Api(app)
 
-main()
+if __name__ == '__main__':
+    main()
+     
+def main():
+    mainP()
+
+
 class SetEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, set):
@@ -20,7 +26,7 @@ def tipos_enfermedades():
    # print(enfermedades_list)
     return jsonify( tipos_enfermedades_list)
 
-@app.route('/enfermedades',methods=['GET'])
+@app.route('/enfermedades',methods=['POST'])
 def enfermedades():
     result=[]
     print("llegue")
@@ -29,12 +35,13 @@ def enfermedades():
         if enfermedades['tipo']==tipo:result.append(enfermedades['nombre'])
     return jsonify(result)
 
-@app.route('/platillos/<pos>',methods=['GET'])
+@app.route('/platillos/<pos>',methods=['POST'])
 def platillo(pos):
     result=[]
-    print("llegue")
-    enfermedades=request.json['enfermedades']
-    result=operation(enfermedades)
+    #print("llegue")
+    enfermedades=list(request.json['enfermedades'])
+    alergias=list(request.json['alergias'])
+    result=operation(enfermedades,alergias)
     
     recipe_list=[]
     for recipe in result:
@@ -47,3 +54,9 @@ def platillo(pos):
     resp=list(recipe_list)[int(pos)*10:int(pos)*10+10]
     r=Response(json.dumps(resp),mimetype='application/json')
     return r
+
+@app.route('/ingredients',methods=['GET'])
+def ingredientes():
+    result=ingredient_list
+
+    return jsonify(result)
