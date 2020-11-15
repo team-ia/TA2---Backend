@@ -49,6 +49,7 @@ pylint==2.5.3
 pyparsing==2.4.7
 python-constraint==1.4.0
 python-decouple==3.3
+python==3.9.0
 pytz==2020.4
 query-string==0.0.0
 rdflib==4.2.2
