@@ -1,0 +1,16 @@
+﻿Nombre,Tipo
+Gripe,Respiratorias
+Faringitis,Respiratorias
+Bronquitis,Respiratorias
+Gastritis,Digestivas
+Hepatitis,Digestivas
+Úlceras,Digestivas
+Hipertension,Cardivasculares
+Arritmia,Cardivasculares
+Varices,Cardivasculares
+Obesidad,Endocrinas
+Diabetes,Endocrinas
+Osteoporosis,Endocrinas
+Migraña,Neurologicas
+Imsomnio,Neurologicas
+Alzheimer,Neurologicas
